@@ -1,14 +1,36 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from 'react';
 
-const Index = () => {
+import AdminLayout from '../components/layout/AdminLayout';
+import FunnelOverview from '../components/Dashboard/FunnelOverview';
+import LeadsTrackingChart from '../components/Dashboard/LeadsTrackingChart';
+import PageHeader from '../components/Dashboard/PageHeader';
+import SourcesPieChart from '../components/Dashboard/SourcesPieChart';
+import StatisticsGrid from '../components/Dashboard/StatisticsGrid';
+
+/**
+ * The main dashboard page.
+ * This component orchestrates the layout and assembly of all dashboard widgets.
+ * It utilizes AdminLayout for the primary structure (Sidebar and Header)
+ * and arranges the content widgets in a responsive grid.
+ */
+const DashboardPage: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <AdminLayout>
+      <PageHeader />
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
+        {/* Main content column (left) */}
+        <div className="flex flex-col gap-6">
+          <FunnelOverview />
+          <LeadsTrackingChart />
+        </div>
+        {/* Sidebar content column (right) */}
+        <div className="flex flex-col gap-6">
+          <SourcesPieChart />
+        </div>
       </div>
-    </div>
+      <StatisticsGrid />
+    </AdminLayout>
   );
 };
 
-export default Index;
+export default DashboardPage;
